@@ -19,6 +19,7 @@ This is an E-commerce web application designed to provide users with a platform 
   - CSS
   - JavaScript
   - React.js
+  - Bootstrap
 
 - Backend:
   - Node.js
@@ -29,16 +30,16 @@ This is an E-commerce web application designed to provide users with a platform 
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/ecommerce-webapp.git
+git clone https://github.com/AbdoTarek2211/E-Commerce-Web-Application.git
 
 # Navigate to the project directory
 cd ecommerce-webapp
 
 # Install dependencies
-npm install
+npm install express/body-parser/bcrypt/dotenv/express-handler/mongoose..etc
 
 # Start the development server
-npm start
+npm start server
 ```
 📄 License
 This project is licensed under the MIT License. See the LICENSE file for details.
