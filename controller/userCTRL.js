@@ -2,7 +2,8 @@ const User = require('../models/userModel');
 const generateToken = require('../config/JWTToken');
 const asyncHandler = require('express-async-handler');
 const validateMongoID = require('../utils/validateDB');
-
+const genRefreshToken = require('../config/refreshToken');
+const jwt = require('jsonwebtoken');
 //Registering a User
 const createUser = asyncHandler(async (req, res) => {
     const email = req.body.email;
@@ -23,18 +24,72 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
     const findUser = await User.findOne({ email });
     if (findUser && await findUser.isPasswordMatched(password)) {
+        const refreshToken = await genRefreshToken(findUser?.id);
+        const updateUser = await User.findByIdAndUpdate(findUser.id, {
+            refreshToken: refreshToken,
+        },
+            { new: true });
+        res.cookie('refreshToken', refreshToken, {
+            httpOnly: true,
+            maxAge: 12 * 60 * 60 * 100,
+        });
         res.json({
-            _id: findUser?._id,
+            _id: findUser?.id,
             firstname: findUser?.firstname,
             lastname: findUser?.lastname,
             email: findUser?.email,
             mobile: findUser?.mobile,
-            token: generateToken(findUser?._id),
+            token: generateToken(findUser?.id),
         });
     }
     else {
         throw new Error("Invalid Credentials");
     }
+});
+
+//handling refreshToken
+const handleRefreshToken = asyncHandler(async (req,res)=> {
+    const cookie = req.cookies;
+    if(!cookie?.refreshToken){
+        throw new Error("Invalid Refresh Token in Cookies");
+    }
+    const refreshToken = cookie.refreshToken;
+    const user = await User.findOne({refreshToken});
+    if(!user){
+        throw new Error("Invalid Refresh Token Present");
+    }
+    jwt.verify(refreshToken,process.env.JWT_SecretKey,(err,decoded) => {
+        if(err || user.id !== decoded.id){
+            throw new Error("Refresh Token Unexpected Error");
+        }
+        const accessToken = generateToken(user?.id);
+        res.json({accessToken});
+    });
+});
+
+//handling Logout
+const logout = asyncHandler(async (req,res) =>{
+    const cookie = req.cookies;
+    if(!cookie?.refreshToken){
+        throw new Error("Invalid Refresh Token in Cookies");
+    }
+    const refreshToken = cookie.refreshToken;
+    const user = await User.findOne({refreshToken});
+    if(!user){
+        res.clearCookie('refreshToken',{
+            httpOnly:true,
+            secure:true,
+        });
+        return res.sendStatus(204); //204 = forbidden
+    }
+    await User.findOneAndUpdate({refreshToken},{
+        refreshToken:"",
+    });
+    res.clearCookie("refreshToken",{
+        httpOnly:true,
+        secure:true,        
+    });
+    res.sendStatus(204);
 });
 
 //Retrieve All Users
@@ -139,4 +194,15 @@ const unblockUser = asyncHandler(async (req, res) => {
     }
 });
 
-module.exports = { createUser, loginUserCtrl, getAllUsers, getUser, deleteUser, updateUser, blockUser, unblockUser };
+module.exports = {
+    createUser,
+    loginUserCtrl,
+    getAllUsers,
+    getUser,
+    deleteUser,
+    updateUser,
+    blockUser,
+    unblockUser,
+    handleRefreshToken,
+    logout,
+};
