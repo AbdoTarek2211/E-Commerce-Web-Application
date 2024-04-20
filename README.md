@@ -11,6 +11,7 @@ This is an E-commerce web application designed to provide users with a platform 
 - Shopping Cart
 - Secure Payment Gateway
 - Order Tracking
+- A Blog
 
 ## 🚀 Technologies Used
 
