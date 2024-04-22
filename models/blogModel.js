@@ -35,8 +35,7 @@ var blogSchema = new mongoose.Schema({
         ref:"User",
     }],
     image:{
-        type:String,
-        default:"https://www.shutterstock.com/shutterstock/photos/381746308/display_1500/stock-photo-blog-blogging-homepage-social-media-network-concept-381746308.jpg",
+        type:Array,
     },
     author:{
         type:String,

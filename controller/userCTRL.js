@@ -50,6 +50,37 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
     }
 });
 
+//admin Login
+const loginAdmin = asyncHandler(async (req, res) => {
+    const { email, password } = req.body;
+    const findAdmin = await User.findOne({ email });
+    if(findAdmin.role !== 'admin'){
+        throw new Error("You don't have Admin Privileges")
+    }
+    if (findAdmin && await findAdmin.isPasswordMatched(password)) {
+        const refreshToken = await genRefreshToken(findAdmin?.id);
+        const updateUser = await User.findByIdAndUpdate(findAdmin.id, {
+            refreshToken: refreshToken,
+        },
+            { new: true });
+        res.cookie('refreshToken', refreshToken, {
+            httpOnly: true,
+            maxAge: 12 * 60 * 60 * 100,
+        });
+        res.json({
+            _id: findAdmin?.id,
+            firstname: findAdmin?.firstname,
+            lastname: findAdmin?.lastname,
+            email: findAdmin?.email,
+            mobile: findAdmin?.mobile,
+            token: generateToken(findAdmin?.id),
+        });
+    }
+    else {
+        throw new Error("Invalid Credentials");
+    }
+});
+
 //handling refreshToken
 const handleRefreshToken = asyncHandler(async (req,res)=> {
     const cookie = req.cookies;
@@ -269,4 +300,5 @@ module.exports = {
     updatePassword,
     forgotPasswordToken,
     resetPassword,
+    loginAdmin,
 };

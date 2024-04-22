@@ -1,7 +1,7 @@
 const mongoose = require('mongoose'); // Erase if already required
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
-const { ObjectId } = mongoose.Schema.Types;
+
 // Declare the Schema of the Mongo model
 var userSchema = new mongoose.Schema({
     firstname: {
@@ -41,7 +41,7 @@ var userSchema = new mongoose.Schema({
     address: {
         type:String,
     },
-    wishlist: [{ type: ObjectId, ref: "Product" }],
+    wishlist: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
     refreshToken: {
         type:String,
     },
