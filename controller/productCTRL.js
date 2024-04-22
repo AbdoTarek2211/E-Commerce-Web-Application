@@ -4,7 +4,7 @@ const slugify = require('slugify');
 const User = require('../models/userModel');
 const validateMongoID = require('../utils/validateDB');
 const cloudinaryUploadImg = require('../utils/cloudinary');
-const fs = require('fs');
+
 const createProduct = asyncHandler(async (req,res) =>{
     try{
         if(req.body.title){
@@ -185,7 +185,7 @@ const uploadImages = asyncHandler(async (req, res) => {
             const { path } = file;
             const newPath = await uploader(path);
             urls.push(newPath);
-            fs.unlinkSync(file.path);
+            //fs.unlinkSync(file.path);
         }
         const findProduct = await Product.findByIdAndUpdate(id, {
             images: urls.map((file) => {
