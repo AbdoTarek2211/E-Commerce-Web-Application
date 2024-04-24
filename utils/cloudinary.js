@@ -1,4 +1,4 @@
-const cloudinary = require('cloudinary').v2;
+const cloudinary = require('cloudinary');
 
 cloudinary.config({ 
   cloud_name: process.env.CLD_NAME, 
@@ -6,26 +6,41 @@ cloudinary.config({
   api_secret: process.env.API_SECRET
 });
 
-const cloudinaryUploadImg = async (fileToUpload) => {
-    return new Promise((resolve, reject) => {
-        cloudinary.uploader.upload(fileToUpload,
-            { 
-                resource_type: "auto"
-            }, (error, result) => {
-            if (error) {
-                reject(error);
-            } else {
-                if (result && result.secure_url) {
-                    resolve({
-                        url: result.secure_url,
-                    });
-                } else {
-                    reject(new Error('Failed to upload image'));
+const cloudinaryUploadImg = async (fileToUploads) => {
+    return new Promise((resolve) => {
+        cloudinary.uploader.upload(fileToUploads, (result) => {
+            resolve(
+                {
+                    url: result.secure_url,
+                    asset_id: result.asset_id,
+                    public_id: result.public_id,
+                },
+                {
+                    resource_type: "auto",
                 }
-            }
+            );
         });
     });
 };
 
+const cloudinaryDeleteImg = async (fileToDelete) => {
+    return new Promise((resolve) => {
+        cloudinary.uploader.destroy(fileToDelete, (result) => {
+            resolve(
+                {
+                    url: result.secure_url,
+                    asset_id: result.asset_id,
+                    public_id: result.public_id,
+                },
+                {
+                    resource_type: "auto",
+                }
+            );
+        });
+    });
+};
 
-module.exports = cloudinaryUploadImg;
+module.exports = {
+    cloudinaryUploadImg,
+    cloudinaryDeleteImg,   
+};
