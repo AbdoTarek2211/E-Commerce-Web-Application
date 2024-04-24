@@ -16,6 +16,7 @@ This is an E-commerce web application designed to provide users with a platform 
 ## 🚀 Technologies Used
 
 - Frontend:
+
   - HTML
   - CSS
   - JavaScript
@@ -42,6 +43,7 @@ npm install express/body-parser/bcrypt/dotenv/express-handler/mongoose..etc
 # Start the development server
 npm start server
 ```
+
 📄 License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
