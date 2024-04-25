@@ -1,0 +1,44 @@
+.auth_card{
+  background: #fff;
+  padding: 20px;
+  width: 500px;
+  margin: 50px auto;
+  border-radius:10px;
+}
+
+.auth_card h3{
+  font-size: 22px;
+  letter-spacing:1px;
+  font-weight: 500;
+  color:#777;
+}
+
+.auth_card p{
+  font-size: 13px;
+  color:#777;
+}
+
+.auth_card .form-control{
+  height: 50px;
+  background:var(--color-light);
+  border:none;
+  color:var(--color-main);
+  font-size:14px;
+  border-radius: 10px;
+}
+
+.auth_card .forgot{
+  font-size: 14px;
+  font-weight:400;
+  color:var(--color-main);
+}
+
+.auth_card .btn_signup{
+  background:var(--orange-color);
+  color:var(--color-main);
+}
+
+.auth_card .btn_signup:hover{
+  background:var(--color-main);
+  color:#fff;
+}

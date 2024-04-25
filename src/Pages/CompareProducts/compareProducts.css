@@ -1,0 +1,40 @@
+.compare_product_card{
+  padding: 20px 15px;
+  background: #fff;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.compare_product_card .cross{
+  position:absolute;
+  top: 15px;
+  right: 15px;
+  width: 25px;
+  padding: 3px;
+  cursor: pointer;
+}
+
+.compare_product_details h5.title{
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 22px;
+  color: var(--color-title);
+}
+
+.compare_product_details h6.price{
+  font-size: 15px;
+  line-height:22px;
+  font-weight: 400;
+}
+
+.compare_product_card .product_detail{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0px;
+  border-top: 1px solid rgba(0,0,0,.1);
+}
+
