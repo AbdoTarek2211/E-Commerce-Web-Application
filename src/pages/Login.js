@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import "../index.css";
 import CustomInput from "../components/CustomInput";
 import { Link, useNavigate } from "react-router-dom";
-import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../features/auth/authSlice";
 
@@ -62,7 +62,7 @@ const Login = () => {
             label="Email Address"
             id="email"
             val={formik.values.email}
-            onCh={formik.handleChange("email")}
+            onChng={formik.handleChange("email")}
           />
           <div className="error">
             {formik.touched.email && formik.errors.email ? (
@@ -75,7 +75,7 @@ const Login = () => {
             label="Password"
             id="pass"
             val={formik.values.password}
-            onCh={formik.handleChange("password")}
+            onChng={formik.handleChange("password")}
           />
           <div className="error">
             {formik.touched.password && formik.errors.password ? (
