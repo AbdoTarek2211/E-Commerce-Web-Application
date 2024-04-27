@@ -13,6 +13,8 @@ import { ImBlog } from "react-icons/im";
 import { IoIosNotifications } from "react-icons/io";
 import { Button, Layout, Menu, theme } from "antd";
 import { useNavigate, Outlet, Link } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 const { Header, Sider, Content } = Layout;
 
@@ -215,6 +217,17 @@ const MainLayout = () => {
             borderRadius: borderRadiusLG,
           }}
         >
+          <ToastContainer
+            position="top-right"
+            autoClose={500}
+            hideProgressBar={false}
+            newestOnTop={true}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            theme="light"
+          />
           <Outlet />
         </Content>
       </Layout>

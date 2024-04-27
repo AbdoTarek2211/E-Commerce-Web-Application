@@ -5,6 +5,7 @@ import { getProducts } from "../features/product/productSlice";
 import { Link } from "react-router-dom";
 import { BiEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
+import { getColors } from "../features/color/colorSlice";
 
 const columns = [
   {
@@ -33,7 +34,7 @@ const columns = [
   {
     title: "Price",
     dataIndex: "price",
-    sorter: (a, b) => a.price.length - b.price.length,
+    sorter: (a, b) => a.price - b.price,
   },
   {
     title: "Action",
@@ -45,16 +46,27 @@ const Productlist = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
+    dispatch(getColors());
   }, []);
   const productState = useSelector((state) => state.product.products);
+  const colorState = useSelector((state) => state.color.colors);
+
   const data1 = [];
   for (let i = 0; i < productState.length; i++) {
+    var clr;
+    const foundColor = colorState.find((x) => x._id == productState[i].color);
+    if (foundColor) {
+      clr = foundColor.title;
+    } else {
+      clr = productState[i].color;
+    }
+
     data1.push({
       key: i + 1,
       title: productState[i].title,
       brand: productState[i].brand,
       category: productState[i].category,
-      color: productState[i].color,
+      color: clr,
       price: `${productState[i].price}`,
       action: (
         <>

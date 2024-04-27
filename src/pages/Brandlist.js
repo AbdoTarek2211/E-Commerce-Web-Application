@@ -32,7 +32,7 @@ const Brandlist = () => {
   for (let i = 0; i < brandState.length; i++) {
     data1.push({
       key: i + 1,
-      name: brandState[i].title,
+      name: brandState[i].brand,
 
       action: (
         <>
