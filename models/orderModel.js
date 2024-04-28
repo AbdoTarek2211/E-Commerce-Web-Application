@@ -13,10 +13,11 @@ var orderSchema = new mongoose.Schema({
     orderStatus:{
         type:String,
         default:"Not Processed",
-        enum:["Not Processed","Cash on Delivery","Processing Order","Order Dispatched","Order Canceled","Order Delivered"],
+        enum:["Not Processed","Cash on Delivery","Processing","Dispatched","Canceled","Delivered"],
     },
     orderby:{
-        type:mongoose.Schema.Types.ObjectId,ref:"User",
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
     },
 },
 {

@@ -17,7 +17,7 @@ const cookieParser = require('cookie-parser');
 const { errorHandler, notFound } = require('./middlewares/errorHandler');
 const morgan = require('morgan');
 
-dbConnect();
+dbConnect.connectDB();
 
 app.use(morgan("dev"));
 app.use(bodyParser.json());
@@ -37,6 +37,11 @@ app.use('/api/enquiry', enquiryRouter);
 
 app.use(notFound);
 app.use(errorHandler);
+
+
+
+
+
 
 app.listen(PORT, () => {
     console.log(`Server is Running On Port ${PORT}`);

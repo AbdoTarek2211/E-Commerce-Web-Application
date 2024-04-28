@@ -144,7 +144,7 @@ const uploadImages = asyncHandler(async (req, res) => {
     const { id } = req.params;
     validateMongoID(id);
     try {
-        const uploader = async (path) => cloudinaryUploadImg(path, "images");
+        const uploader = (path) => cloudinaryUploadImg(path, "images");
         const urls = [];
         const files = req.files;
         for (const file of files) {
