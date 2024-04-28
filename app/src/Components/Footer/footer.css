@@ -1,0 +1,32 @@
+.footer{
+  background: var(--color-third);
+}
+
+.top_footer{
+  border-bottom: 1px solid rgba(255,255,255,.1) !important;
+}
+
+.bottom_footer{
+  border-top: 1px solid rgba(255,255,255,.1) !important;
+}
+
+
+.footer .search_span{
+  cursor: pointer;
+  background: var(--color-third);
+  color: white;
+  padding: 8px 17px;
+}
+
+.footer .social_icons a{
+  transition: all .3s ease-in-out;
+  background: var(--color-main);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.footer .social_icons a:hover{
+  color: var(--orange-color) !important;
+  background-color: var(--color-third);
+  transform: translateY(-10px);
+}

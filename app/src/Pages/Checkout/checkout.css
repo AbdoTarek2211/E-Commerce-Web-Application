@@ -1,0 +1,42 @@
+.breadcrumb-item{
+  color: #777;
+  font-size: 16px;
+}
+
+.checkout_wrapper form {
+  input::placeholder , 
+  select{
+    color: #777;
+  }
+}
+
+.user_details{
+  font-size: 16px;
+  color: var(var(--color-title));
+}
+
+.checkout_data{
+  P{
+    padding: 10px 0;
+    color: #777;
+  }
+  .total{
+    font-size: 18px;
+    color: var(var(--color-title));
+  }
+  .total_price{
+    font-size: 16px;
+    color: #777;
+  }
+}
+
+.image_holder {
+  span{
+    position: absolute;
+    top: -5px;
+    right: -5px;
+  }
+  img{
+    border-radius: 5px;
+  }
+}
