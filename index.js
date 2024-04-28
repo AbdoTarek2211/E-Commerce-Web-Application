@@ -16,9 +16,9 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { errorHandler, notFound } = require('./middlewares/errorHandler');
 const morgan = require('morgan');
-
+const cors = require('cors');
 dbConnect.connectDB();
-
+app.use(cors());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
