@@ -1,0 +1,149 @@
+.description_wrapper h4, 
+.reviews_wrapper h3  {
+  font-size: 26px;
+  color: var( --color-title);
+  margin-bottom: 10px;
+}
+
+.review_inner_wrapper{
+  background-color: #fff;
+  padding: 30px;
+}
+
+.review_head{
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  padding-bottom: 20px;
+}
+
+.review_head h4{
+  font-size: 18px;
+  color: var(--color-title);
+}
+
+.description_wrapper p,
+.review_head p , 
+.review_head a ,
+.review p ,
+.w_review,
+.d_review,
+.main_product_details a
+{
+  font-size: 14px;
+  color: #777;
+}
+
+.review_form{
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.review_form h4{
+  font-size: 16px;
+  color: #777;
+}
+
+.review:not(:last-child){
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.main_product_image{
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.main_product_image>div{
+  border:1px solid rgba(0,0,0,.1);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main_product_image img{
+  object-fit: cover;
+  height: 420px;
+  width: 90%;
+}
+
+.other_product_images{
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background: #fff;
+}
+
+.other_product_images>div{
+  padding:20px ;
+  border:1px solid rgba(0,0,0,.1);
+  width: 48%;
+  height: 230px;
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.other_product_images>div img{
+  width:250px !important;
+  height: 100%;
+}
+
+.main_product_details{
+  padding: 25px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.main_product_details >div{
+  padding: 20px 0;
+  border-bottom:1px solid rgba(0,0,0,.1);
+}
+
+.main_product_details .title{
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-title);
+}
+
+.main_product_details .price{
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+}
+
+.w_review .d_review{
+  color: #777 !important;
+}
+
+.product_heading{
+  font-size: 14px;
+  color: var(--color-title);
+}
+
+.product_data,
+.main_product_details .badge{
+  font-size: 13px;
+  color: #777;
+}
+
+.main_product_details .badge{
+  border: 1px solid rgba(0,0,0,.5 );
+  padding: 5px;
+}
+
+.main_product_details .buy button{
+  padding: 8px 15px;
+}
+
+
+@media screen and (max-width:768px) {
+  .posted_by , .comment{
+    font-size: 10px !important;
+  }
+  .write_review{
+    font-size: 10px !important;
+  }
+}

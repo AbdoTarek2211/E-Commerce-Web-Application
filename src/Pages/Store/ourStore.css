@@ -1,0 +1,96 @@
+.filter_card{
+  background: #fff;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  padding: 15px 15px 25px;
+}
+
+.filter_title{
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: var(--color-title);
+  margin-bottom: 20px;
+}
+
+.filter_subtitle {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 15px 0;
+  color: var(--color-title);
+}
+
+.filter_card ul,
+.filter_card .form-check label{
+  font-size: 13px;
+  line-height: 30px;
+  color: #777;
+  cursor: pointer;
+}
+.filter_card .form-check-input:focus{
+  box-shadow: none;
+}
+
+.filter_card .form-floating input{
+  min-height: 0px !important;
+  height: 50px !important;
+} 
+
+.random_products h6{
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.random_products:first-child{
+  border-bottom: 1px solid var(--color-light);
+}
+
+.filter_sort_grid{
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+
+}
+
+.grid img{
+  width: 30px;
+  height: 30px;
+  background-color:#f2f2f2;
+  padding: 8px;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  cursor: pointer;
+}
+
+.grids{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.badge{
+  cursor: pointer !important;
+}
+
+@media screen and (max-width:768px) {
+  .filter_sort_grid{
+    .drop_menu{
+      display: none !important;
+    }
+    .grids{
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+}
