@@ -1,0 +1,17 @@
+.special_product_card{
+  padding: 10px;
+  border-radius: 20px 10px;
+  -webkit-border-radius: 20px 10px;
+  -moz-border-radius: 20px 10px;
+  -ms-border-radius: 20px 10px;
+  -o-border-radius: 20px 10px;
+  background-color: #fff;
+  height: 380px;
+}
+
+.special_product_card img{
+  height: 300px;
+  width: 350px;
+  margin: 20px 0;
+  border-radius: 6px;
+}

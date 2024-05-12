@@ -1,0 +1,123 @@
+.header_top{
+  background: var(--color-main);
+  border-bottom: 1px solid var(--color-second);
+}
+.header_top p{
+  font-size: 14px;
+}
+.header_upper{
+  background-color: var(--color-main);
+}
+.header_upper p{
+  font-size: 14px;
+}
+
+.header_upper .search_span{
+  background: var(--orange-color);
+}
+
+.header_upper .header_upper_links img{
+  width: 35px;
+  height: 35px;
+}
+
+.header_bottom{
+  background: var(--color-third);
+}
+
+.header_bottom .menu_links a ,
+.header_bottom .dropdown button{
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.8;
+  font-weight: 400;
+  letter-spacing: .3;
+  text-transform: uppercase;
+  position: relative;
+  transition: all .3s ease-in-out;
+}
+.header_bottom .menu_links a:hover{
+  color: var(--orange-color) !important;
+}
+.header_bottom .dropdown button::before{
+  content: url('../../assets/images/menu.svg');
+  position: absolute;
+  left: -22px;
+  bottom: -5px;
+}
+
+.header_bottom .dropdown button:focus{
+  box-shadow: none;
+}
+
+.header_bottom .dropdown-menu{
+  background: var(--color-main);
+  transform: translate3d(0px,52px,0px) !important;
+}
+
+.header_bottom .dropdown-item{
+  padding: 15px;
+  margin-bottom: 3px;
+  border-bottom: 1px solid var(--color-third);
+  transition: all .3s ease-in-out;
+
+}
+
+
+.header_bottom .dropdown-item:hover{
+  background-color: transparent !important;
+  color: var(--orange-color) !important;
+}
+
+@media screen and (max-width:768px) {
+  .header_top{
+    display: none;
+  }
+  
+  .header_upper {
+    .logo{
+      font-size: 25px;
+      width: 90%;
+      margin: 10px auto;
+      text-align: center !important;
+    }
+    .input-group {
+      width: 80% !important;
+      margin: 10px auto;
+    } 
+    .cart_details {
+      span{
+        width: 20px;
+        text-align: center;
+        padding: 3px;
+      }
+      p{
+        font-size: 10px !important;
+      }
+    }
+    .links_col{
+      margin: 10px auto;
+      img{
+        width: 20px;
+        margin: 0 0 0 5px;
+      }
+      p{
+        font-size: 12px;
+      }
+    }
+  }
+
+  .header_bottom{
+    .dropdown{
+      display: none;
+    }
+    .menu_links{
+      width: 90%;
+    }
+    a{
+        font-size: 10px !important;
+    }
+  }
+
+
+}
