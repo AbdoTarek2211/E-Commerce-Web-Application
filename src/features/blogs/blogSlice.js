@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+=======
+import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
+>>>>>>> Stashed changes
 import blogService from "./blogService";
 
 export const getBlogs = createAsyncThunk(
@@ -22,6 +26,42 @@ export const createBlogs = createAsyncThunk(
     }
   }
 );
+<<<<<<< Updated upstream
+=======
+export const getABlog = createAsyncThunk(
+  "blogs/get-blog",
+  async (id,thunkAPI) => {
+    try {
+      return await blogService.getBlog(id);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+export const deleteABlog = createAsyncThunk(
+  "blogs/delete-blog",
+  async (id,thunkAPI) => {
+    try {
+      return await blogService.deleteBlog(id);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+
+export const updateABlog = createAsyncThunk(
+  "blogs/update-blog",
+  async (blog, thunkAPI) => {
+    try {
+      return await blogService.updateBlog(blog);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+export const resetState = createAction("Reset_All") ;
+>>>>>>> Stashed changes
 const initialState = {
   blogs: [],
   isError: false,
@@ -64,7 +104,56 @@ export const blogSlice = createSlice({
         state.isError = true;
         state.isSuccess = false;
         state.message = action.error;
+<<<<<<< Updated upstream
       });
+=======
+      }).addCase(getABlog.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getABlog.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.blogName = action.payload.title;
+        state.blogDescription = action.payload.description;
+        state.blogCategory = action.payload.category;
+        state.blogImage = action.payload.image;
+      })
+      .addCase(getABlog.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+      }).addCase(updateABlog.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateABlog.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.updatedBlog = action.payload;
+      })
+      .addCase(updateABlog.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+      }).addCase(deleteABlog.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteABlog.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.deletedBlog = action.payload;
+      })
+      .addCase(deleteABlog.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+      }).addCase(resetState, () => initialState) ;
+>>>>>>> Stashed changes
   },
 });
 

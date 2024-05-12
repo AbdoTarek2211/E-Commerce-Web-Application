@@ -1,51 +1,42 @@
-<<<<<<< Updated upstream
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-=======
 import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
->>>>>>> Stashed changes
-import brandService from "./brandService";
+import couponService from "./couponService";
 
-export const getBrands = createAsyncThunk(
-  "brand/get-brands",
+export const getAllCoupon = createAsyncThunk(
+  "coupon/get-all-coupons",
   async (thunkAPI) => {
     try {
-      return await brandService.getBrands();
+      return await couponService.getCoupons();
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
   }
 );
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
-export const createBrand = createAsyncThunk(
-  "brand/create-brand",
-  async (brandData, thunkAPI) => {
+export const createCoupon = createAsyncThunk(
+  "coupon/create-coupon",
+  async (couponData, thunkAPI) => {
     try {
-      return await brandService.createBrand(brandData);
+      return await couponService.createCoupons(couponData);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
   }
 );
-<<<<<<< Updated upstream
-=======
-export const getABrand = createAsyncThunk(
-  "brand/get-brand",
+export const getACoupon = createAsyncThunk(
+  "coupon/get-coupon",
   async (id,thunkAPI) => {
     try {
-      return await brandService.getBrand(id);
+      return await couponService.getCoupon(id);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
   }
 );
-export const deleteABrand = createAsyncThunk(
-  "brand/delete-brand",
+export const deleteACoupon = createAsyncThunk(
+  "coupon/delete-coupon",
   async (id,thunkAPI) => {
     try {
-      return await brandService.deleteBrand(id);
+      return await couponService.deleteCoupon(id);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -53,108 +44,105 @@ export const deleteABrand = createAsyncThunk(
 );
 
 
-export const updateABrand = createAsyncThunk(
-  "brand/update-brand",
-  async (brand, thunkAPI) => {
+export const updateACoupon = createAsyncThunk(
+  "coupon/update-coupon",
+  async (coupon, thunkAPI) => {
     try {
-      return await brandService.updateBrand(brand);
+      return await couponService.updateCoupon(coupon);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
   }
 );
 export const resetState = createAction("Reset_All") ;
->>>>>>> Stashed changes
 const initialState = {
-  brands: [],
+  coupons: [],
   isError: false,
   isLoading: false,
   isSuccess: false,
   message: "",
 };
-export const brandSlice = createSlice({
-  name: "brands",
+export const couponSlice = createSlice({
+  name: "coupons",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getBrands.pending, (state) => {
+      .addCase(getAllCoupon.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getBrands.fulfilled, (state, action) => {
+      .addCase(getAllCoupon.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
         state.isSuccess = true;
-        state.brands = action.payload;
+        state.coupons = action.payload;
       })
-      .addCase(getBrands.rejected, (state, action) => {
+      .addCase(getAllCoupon.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;
         state.message = action.error;
       })
-      .addCase(createBrand.pending, (state) => {
+      .addCase(createCoupon.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(createBrand.fulfilled, (state, action) => {
+      .addCase(createCoupon.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
         state.isSuccess = true;
-        state.createdBrand = action.payload;
+        state.createdCoupon = action.payload;
       })
-      .addCase(createBrand.rejected, (state, action) => {
+      .addCase(createCoupon.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;
         state.message = action.error;
-<<<<<<< Updated upstream
-      });
-=======
-      }).addCase(getABrand.pending, (state) => {
+      }).addCase(getACoupon.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getABrand.fulfilled, (state, action) => {
+      .addCase(getACoupon.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
         state.isSuccess = true;
-        state.brandName = action.payload.brand;
+        state.couponName = action.payload.name;
+        state.couponExpiry = action.payload.expiry;
+        state.couponDiscount = action.payload.discount;
       })
-      .addCase(getABrand.rejected, (state, action) => {
+      .addCase(getACoupon.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;
         state.message = action.error;
-      }).addCase(updateABrand.pending, (state) => {
+      }).addCase(updateACoupon.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(updateABrand.fulfilled, (state, action) => {
+      .addCase(updateACoupon.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
         state.isSuccess = true;
-        state.updatedBrand = action.payload;
+        state.updatedCoupon = action.payload;
       })
-      .addCase(updateABrand.rejected, (state, action) => {
+      .addCase(updateACoupon.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;
         state.message = action.error;
-      }).addCase(deleteABrand.pending, (state) => {
+      }).addCase(deleteACoupon.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(deleteABrand.fulfilled, (state, action) => {
+      .addCase(deleteACoupon.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
         state.isSuccess = true;
-        state.deletedBrand = action.payload;
+        state.deletedCoupon = action.payload;
       })
-      .addCase(deleteABrand.rejected, (state, action) => {
+      .addCase(deleteACoupon.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;
         state.message = action.error;
       }).addCase(resetState, ()=> initialState);
->>>>>>> Stashed changes
   },
 });
 
-export default brandSlice.reducer;
+export default couponSlice.reducer;

@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { Table } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AiFillDelete } from "react-icons/ai";
 import { BiEdit } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrders } from "../features/auth/authSlice";
+import { getOrderByUser, getOrders } from "../features/auth/authSlice";
 
 const columns = [
   {
@@ -12,12 +12,20 @@ const columns = [
     dataIndex: "key",
   },
   {
-    title: "Name",
+    title: "Brand",
+    dataIndex: "brand",
+  },
+  {
+    title: "Product Name",
     dataIndex: "name",
   },
   {
-    title: "Product",
-    dataIndex: "product",
+    title: "Count",
+    dataIndex: "count",
+  },
+  {
+    title: "Color",
+    dataIndex: "color",
   },
   {
     title: "Amount",
@@ -33,34 +41,25 @@ const columns = [
   },
 ];
 
-const Orders = () => {
+const ViewOrder = () => {
+  const location = useLocation();
   const dispatch = useDispatch();
+  const getUserId = location.pathname.split("/")[3] ;
   useEffect(() => {
-    dispatch(getOrders());
-  }, []);
-  const orderState = useSelector((state) => state.auth.orders);
+
+    dispatch(getOrderByUser());
+  }, [getUserId]);
+  const orderState = useSelector((state) => state.auth.orderByUser[0].products);
   const data1 = [];
   for (let i = 0; i < orderState.length; i++) {
     data1.push({
       key: i + 1,
-      name: orderState[i].orderby.firstname,
-<<<<<<< Updated upstream
-      product: orderState[i].products.map((i, j) => {
-        return (
-          <ul key={j}>
-            <li>{i.product.title}</li>
-          </ul>
-        );
-      }),
-=======
-      product: (
-         <Link to = {`/admin/orders/${orderState[i].orderby._id}`}>
-          View Orders
-         </Link>
-          ),
->>>>>>> Stashed changes
-      amount: orderState[i].paymentIntent.amount,
-      date: new Date(orderState[i].createdAt).toLocaleString(),
+      name: orderState[i].product.title,
+      brand: orderState[i].product.brand,
+      count: orderState[i].count,
+      amount: orderState[i].product.price,
+      color: orderState[i].product.color,
+      date: orderState[i].product.createdAt,
       action: (
         <>
           <Link className=" fs-3 text-danger" to="/">
@@ -75,7 +74,7 @@ const Orders = () => {
   }
   return (
     <div>
-      <h3 className="mb-4 title">Orders</h3>
+      <h3 className="mb-4 title">View Order</h3>
       <div>
         <Table columns={columns} dataSource={data1} />
       </div>
@@ -83,4 +82,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default ViewOrder;

@@ -6,6 +6,10 @@ import {
   AiOutlineUser,
   AiOutlinePicRight,
 } from "react-icons/ai";
+<<<<<<< Updated upstream
+=======
+import { RiCouponLine } from "react-icons/ri";
+>>>>>>> Stashed changes
 import { SiBrandfolder } from "react-icons/si";
 import { BiCategoryAlt } from "react-icons/bi";
 import { FaClipboardList, FaBloggerB } from "react-icons/fa";
@@ -107,6 +111,26 @@ const MainLayout = () => {
               label: "Orders",
             },
             {
+<<<<<<< Updated upstream
+=======
+              key: "marketing",
+              icon: <RiCouponLine className="fs-4" />,
+              label: "Marketing",
+              children: [
+                {
+                  key: "coupon",
+                  icon: <ImBlog className="fs-4" />,
+                  label: "Add Coupon",
+                },
+                {
+                  key: "coupon-list",
+                  icon: <RiCouponLine className="fs-4" />,
+                  label: "Coupon List",
+                },
+              ],
+            },
+            {
+>>>>>>> Stashed changes
               key: "blogs",
               icon: <FaBloggerB className="fs-4" />,
               label: "Blogs",

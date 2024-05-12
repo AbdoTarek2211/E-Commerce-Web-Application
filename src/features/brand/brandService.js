@@ -17,10 +17,45 @@ const createBrand = async (brand) => {
 
   return response.data;
 };
+<<<<<<< Updated upstream
 
 const brandService = {
   getBrands,
   createBrand,
+=======
+const updateBrand = async (brand) => {
+
+  const response = await axios.put(
+    `${base_url}brand/update-brand/${brand.id}`,
+    {brand: brand.brandData.brand},
+    config
+  );
+  return response.data;
+};
+
+const getBrand = async (id) => {
+  const response = await axios.get(
+    `${base_url}brand/get-brand/${id}`,
+    config
+  );
+
+  return response.data;
+};
+const deleteBrand = async (id) => {
+  const response = await axios.delete(
+    `${base_url}brand/delete-brand/${id}`,
+    config
+  );
+
+  return response.data;
+};
+const brandService = {
+  getBrands,
+  createBrand,
+  getBrand,
+  updateBrand,
+  deleteBrand,
+>>>>>>> Stashed changes
 };
 
 export default brandService;
